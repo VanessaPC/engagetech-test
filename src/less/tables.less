@@ -2029,3 +2029,121 @@ table.spreadsheet {
 		}
 	}
 }
+
+div.list-table {
+	border-bottom: none;
+	color: @mid-light-grey-color;
+
+	div {
+		height: 50px;
+		padding-top: 10px;
+	}
+
+	.labour-header-row {
+		background: none;
+		text-transform: uppercase;
+		line-height: 1.3;
+		font-size: @default-font-size - 2px;
+		padding-bottom: 20px;
+	}
+
+	.labour-body-row {
+		border-top: 0;
+	}
+
+	.separator {
+		border-right: 2px solid @light-pale-grey-color;		
+	}
+
+	.big {
+		font-size: @default-font-size + 6px;
+	}
+
+	.strong {
+		color: @mid-dark-grey-color;
+	}
+
+	.bolder {
+		font-size: @default-font-size - 2px;
+		font-weight: @weight-medium;
+	}
+
+	.pale {
+		color: @light-grey-color;
+	}
+
+	.right {
+		text-align: right;
+	}
+
+	// Information gaps
+	.sort-by-name {
+		&:nth-of-type(2) {
+			margin-bottom: 30px;
+		}
+	}
+	
+	.total-separation {
+		margin-top: 30px;
+	}
+
+	// Arrow interactivity
+	.arrow-active {
+		position: relative;
+		
+		&:after {
+			margin-left: 3px;
+			font-size: 14px;
+			content: "\005E";				
+			display: inline-block;
+			transform: rotate(180deg);
+		}
+
+		&.reverse {
+			&:after {
+				margin-left: 3px;
+				font-size: 14px;
+				transform: rotate(0deg);
+			}
+		}
+	}
+
+	// Animations
+	.fade.ng-move { 
+		animation: fade-in-rows 0.4s cubic-bezier(0,0,0.31,1);
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes fade-in-rows {
+		0% { 
+			opacity: 0; 
+			transform: translateX(20px);
+		}
+
+		100% { 
+			opacity: 1;
+			background: @pale-grey-color;
+			transform: translateX(0);
+			
+		}
+	}
+
+	.active {
+		animation: fadeIn 0.9s cubic-bezier(0,0,0.31,1);
+		animation-delay: 0.6s;
+		animation-fill-mode: forwards;	
+	}
+	
+	@keyframes fadeIn {
+		0% {
+			background: none;
+		}
+	
+		100% {
+			background: @light-green-color;
+		}
+	}
+}
+
+
+

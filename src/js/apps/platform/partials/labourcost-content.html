@@ -1,13 +1,66 @@
 <div ng-controller="ctrlLabourCost">
 	<h2>Labour cost report</h2>
-	
+
 	<div class="list-table">
-		<div class="header-row">
-			<div class="col-25">Example heading</div>
+		<div class="labour-header-row">
+			<div class="col-4" 
+				ng-click="sortBy('name')"
+				ng-class="{'arrow-active': propertyName === 'name', reverse: reverse}">Payroll </br>Provider</div>
+			<div class="col-3" 
+				ng-click="sortBy('workerCount')"
+				ng-class="{'arrow-active': propertyName === 'workerCount', reverse: reverse}">Worker </div>
+			<div class="col-3" 
+				ng-click="sortBy('complianceStats')"
+				ng-class="{'arrow-active': propertyName === 'complianceStats', reverse: reverse}">Compliance score </div>
+			<div class="col-4 right" 
+				ng-click="sortBy('grossPayTotal')"
+				ng-class="{'arrow-active': propertyName === 'grossPayTotal', reverse: reverse}">Gross </br>Pay($) </div>
+			<div class="col-3 right" 
+				ng-click="sortBy('payrollAdminTotal')"
+				ng-class="{'arrow-active': propertyName === 'payrollAdminTotal', reverse: reverse}">Payroll Admin($) </div>
+			<div class="col-4 right" 
+				ng-click="sortBy('labourCostTotal')"
+				ng-class="{'arrow-active': propertyName === 'labourCostTotal', reverse: reverse}">Labour Cost($) </div>
+			<div class="col-3 right" 
+				ng-click="sortBy('workForce')"
+				ng-class="{'arrow-active': propertyName === 'workForce', reverse: reverse}">WorkForce </div>
 		</div>
 		
-		<div class="body-row">
-			<div class="col-25">Example data entry</div>
+		<div class="labour-body-row fade"
+			ng-repeat="category in fullData"
+			ng-class="{'sort-by-name': propertyName === 'name'}">
+
+			<div class="col-4 bolder" 
+				ng-class="{active: propertyName === 'name'}">{{ category.name }}</div>				
+			<div class="col-3 big pale"
+				ng-class="{active: propertyName === 'workerCount'}">{{ category.workerCount }}</div>
+			<div class="col-3 separator bolder" 
+				ng-class="{active: propertyName === 'complianceStats'}">{{ getComplianceScore(category.complianceStats) }}%</div>
+			<div class="col-4 big strong right"
+				ng-class="{active: propertyName === 'grossPayTotal'}">{{ getCurrency(category.grossPayTotal) }}</div>
+			<div class="col-3 pale right"
+				ng-class="{active: propertyName === 'payrollAdminTotal'}">{{ getPayroll(category.payrollAdminTotal) }}</div>
+			<div class="col-4 separator big pale right"
+				ng-class="{active: propertyName === 'labourCostTotal'}">{{ getCurrency(category.labourCostTotal) }}</div>
+			<div class="col-3 bolder right"
+				ng-class="{active: propertyName === 'workForce'}">{{ getWorkForce(category.workerCount) }}%</div>
+		</div>
+
+		<div class="labour-body-row total-separation">
+			<div class="col-4 bolder right strong"
+				ng-class="{active: propertyName === 'name'}">{{ total.name }}</div>				
+			<div class="col-3 big strong"
+				ng-class="{active: propertyName === 'workerCount'}">{{ total.workerCount }}</div>
+			<div class="col-3 separator bolder strong"
+				ng-class="{active: propertyName === 'complianceStats'}">{{ getComplianceScore(total.complianceStats) }}%</div>
+			<div class="col-4 big strong right "
+				ng-class="{active: propertyName === 'grossPayTotal'}">{{ getCurrency(total.grossPayTotal) }}</div>
+			<div class="col-3 pale right strong"
+				ng-class="{active: propertyName === 'payrollAdminTotal'}">{{ getPayroll(total.payrollAdminTotal) }}</div>
+			<div class="col-4 separator big right strong"
+				ng-class="{active: propertyName === 'labourCostTotal'}">{{ getCurrency(total.labourCostTotal) }}</div>
+			<div class="col-3 bolder right strong"
+				ng-class="{active: propertyName === 'workForce'}">{{ getWorkForce(total.workerCount) }}%</div>
 		</div>
 	</div>
 </div>
